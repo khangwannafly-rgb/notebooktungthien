@@ -1,0 +1,2913 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tùng Thiện Notebook ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Segoe UI', cursive;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background particles */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            z-index: 0;
+            background-image: 
+                radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px, 100px 100px;
+            background-position: 0 0, 25px 25px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Decorative stars */
+        .star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            z-index: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 10;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px;
+            }
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 14px;
+                gap: 10px;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .logo-container {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #fbbf24;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.5);
+            animation: pulse 2s infinite;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .title input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 3px solid #fbbf24;
+            color: #333;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            min-width: 250px;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+            transition: all 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .title input {
+                min-width: 200px;
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+
+        .title input:focus {
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.5);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-buttons button {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .header-buttons button:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3));
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .header-buttons button:active {
+            transform: scale(0.95);
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .header-buttons button:hover .tooltip {
+            opacity: 1;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            z-index: 5;
+        }
+
+        .pages-sidebar {
+            width: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+            border-right: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .pages-sidebar {
+                width: 70px;
+                padding: 20px 10px;
+                gap: 15px;
+            }
+        }
+
+        .page-tab {
+            width: 65px;
+            height: 95px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s;
+            position: relative;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .page-tab {
+                width: 50px;
+                height: 75px;
+                font-size: 16px;
+            }
+        }
+
+        .page-tab::before {
+            content: '📄';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .page-tab:hover {
+            transform: translateX(10px) scale(1.1);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+            border-color: #fbbf24;
+        }
+
+        .page-tab.active {
+            border-color: #fbbf24;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            transform: translateX(10px) scale(1.15);
+            box-shadow: 0 12px 30px rgba(251, 191, 36, 0.6);
+        }
+
+        .add-page {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.4), rgba(245, 158, 11, 0.4));
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            transition: all 0.3s;
+            border: 3px dashed #fbbf24;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .add-page {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+            }
+        }
+
+        .add-page:hover {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.7), rgba(245, 158, 11, 0.7));
+            transform: scale(1.2) rotate(90deg);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.5);
+        }
+
+        .editor-area {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .editor-area {
+                padding: 20px 15px;
+                gap: 15px;
+            }
+        }
+
+        .toolbar {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .toolbar {
+                padding: 15px;
+                gap: 10px;
+                border-radius: 15px;
+            }
+        }
+
+        .tool-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .tool-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+                gap: 5px;
+            }
+        }
+
+        .tool-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .tool-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .tool-btn.active {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+        }
+
+        .tool-btn.undo-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .tool-btn.undo-btn:hover {
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
+        }
+
+        .tool-btn.undo-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .color-picker {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .color-picker:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .editor-content {
+            background: #fff;
+            border-radius: 20px;
+            padding: 0;
+            min-height: 550px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            transform: perspective(1000px) rotateX(2deg);
+        }
+
+        /* Beautiful notebook paper pattern */
+        .notebook-paper {
+            background: 
+                linear-gradient(to right, 
+                    #ffe4e1 0px, 
+                    #ffe4e1 45px, 
+                    transparent 45px),
+                repeating-linear-gradient(
+                    transparent,
+                    transparent 31px,
+                    #e6f2ff 31px,
+                    #e6f2ff 33px
+                );
+            background-size: 100% 100%, 100% 33px;
+            padding: 50px 30px 50px 70px;
+            min-height: 550px;
+            position: relative;
+        }
+
+        /* Decorative margin line */
+        .notebook-paper::before {
+            content: '';
+            position: absolute;
+            left: 55px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #ff6b9d 0%, #c084fc 100%);
+            box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+        }
+
+        /* Top margin decoration */
+        .notebook-paper::after {
+            content: '✨ My Notebook ✨';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #c084fc;
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0.4;
+        }
+
+        /* Combined canvas and textarea container */
+        .combined-editor {
+            position: relative;
+            width: 100%;
+            min-height: 480px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 480px;
+            border: none;
+            outline: none;
+            font-size: 17px;
+            line-height: 33px;
+            resize: none;
+            font-family: 'Comic Sans MS', cursive;
+            color: #2d3748;
+            background: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Canvas overlay for drawing */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        canvas.drawing-mode {
+            pointer-events: auto;
+            cursor: crosshair;
+        }
+
+        .images-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .uploaded-image {
+            position: absolute;
+            border: 4px solid #667eea;
+            cursor: move;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            transition: all 0.3s;
+            pointer-events: auto;
+        }
+
+        .uploaded-image:hover {
+            border-color: #fbbf24;
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .image-delete {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 10;
+            border: 2px solid white;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+        }
+
+        .uploaded-image:hover .image-delete {
+            display: flex;
+            animation: popIn 0.3s;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .info-text {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 15px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .info-text {
+                font-size: 12px;
+                padding: 15px;
+                line-height: 1.6;
+            }
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+        }
+
+        .page-tab:hover .delete-btn {
+            display: flex;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .brush-size {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .brush-size input[type="range"] {
+            width: 120px;
+        }
+
+        /* Stickers decoration */
+        .sticker {
+            position: fixed;
+            font-size: 40px;
+            opacity: 0.3;
+            z-index: 1;
+            animation: float-sticker 6s infinite ease-in-out;
+        }
+
+        @keyframes float-sticker {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Notification toast */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+
+        /* Undo indicator */
+        .undo-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 999;
+        }
+
+        .undo-indicator.show {
+            opacity: 1;
+        }
+
+        .draw-tools-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 15px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Dynamic text and shapes */
+        .dynamic-text {
+            position: absolute;
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            cursor: move;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            z-index: 4;
+            pointer-events: auto;
+            animation: popIn 0.3s;
+        }
+
+        .dynamic-text:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .text-delete {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 25px;
+            height: 25px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            border: 2px solid white;
+        }
+
+        .dynamic-text:hover .text-delete {
+            display: flex;
+        }
+
+        /* Sticker panel */
+        .sticker-panel {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            z-index: 2000;
+            display: none;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .sticker-panel {
+                right: 50%;
+                transform: translate(50%, -50%);
+                width: 90%;
+                max-width: 350px;
+                max-height: 60vh;
+            }
+        }
+
+        .sticker-panel.active {
+            display: block;
+            animation: slideIn 0.3s;
+        }
+
+        .sticker-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .sticker-item {
+            font-size: 40px;
+            cursor: pointer;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .sticker-item:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+            transform: scale(1.2);
+        }
+
+        .placed-sticker {
+            position: absolute;
+            font-size: 40px;
+            cursor: move;
+            z-index: 5;
+            pointer-events: auto;
+            animation: popIn 0.3s;
+        }
+
+        .placed-sticker:hover {
+            transform: scale(1.2);
+        }
+
+        /* Layer panel */
+        .layer-panel {
+            position: fixed;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #2d3748;
+            padding: 0;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            display: none;
+            width: 280px;
+            max-height: 600px;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .layer-panel {
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 350px;
+                max-height: 70vh;
+            }
+        }
+
+        .layer-panel.active {
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.3s;
+        }
+
+        .layer-panel-header {
+            background: #1a202c;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #4a5568;
+        }
+
+        .layer-panel-header h3 {
+            color: #fff;
+            font-size: 14px;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .layer-list-container {
+            flex: 1;
+            overflow-y: auto;
+            background: #2d3748;
+            padding: 10px;
+        }
+
+        .layer-item {
+            background: #4a5568;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .layer-item:hover {
+            border-color: #667eea;
+            transform: translateX(3px);
+        }
+
+        .layer-item.active {
+            border-color: #fbbf24;
+            background: linear-gradient(135deg, #5a6c7d 0%, #4a5568 100%);
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
+        }
+
+        .layer-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
+        }
+
+        .layer-item-content {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .layer-item:hover .layer-item-content {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .layer-thumbnail {
+            width: 40px;
+            height: 40px;
+            background: #2d3748;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+            border: 1px solid #1a202c;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .layer-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .layer-item.active .layer-thumbnail {
+            border-color: #fbbf24;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .layer-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .layer-name {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .layer-type {
+            color: #a0aec0;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .layer-visibility {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .layer-visibility:hover {
+            background: #667eea;
+            transform: scale(1.1);
+        }
+
+        .layer-visibility.hidden {
+            opacity: 0.4;
+        }
+
+        .layer-visibility:active {
+            transform: scale(0.95);
+        }
+
+        .layer-controls {
+            display: flex;
+            gap: 5px;
+            padding: 8px 12px;
+            background: #3d4a5c;
+            border-top: 1px solid #2d3748;
+        }
+
+        @media (max-width: 768px) {
+            .layer-controls {
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+            
+            .layer-controls button {
+                flex: 1 1 calc(50% - 2px);
+                min-width: 60px;
+            }
+        }
+
+        .layer-controls button {
+            background: #667eea;
+            border: none;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex: 1;
+        }
+
+        .layer-controls button:hover {
+            background: #5568d3;
+            transform: translateY(-1px);
+        }
+
+        .layer-controls button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .layer-controls button.delete-layer-btn {
+            background: #ef4444;
+            flex: 0.5;
+        }
+
+        .layer-controls button.delete-layer-btn:hover {
+            background: #dc2626;
+        }
+
+        .layer-opacity-control {
+            padding: 12px;
+            background: #3d4a5c;
+            border-top: 1px solid #2d3748;
+        }
+
+        .layer-opacity-label {
+            color: #a0aec0;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .layer-opacity-value {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .layer-opacity-slider {
+            width: 100%;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #2d3748;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .layer-opacity-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            background: #667eea;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .layer-opacity-slider::-webkit-slider-thumb:hover {
+            background: #fbbf24;
+            transform: scale(1.2);
+        }
+
+        .layer-opacity-slider::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            background: #667eea;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        .layer-actions {
+            padding: 10px;
+            background: #1a202c;
+            border-top: 1px solid #4a5568;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .layer-actions {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+        }
+
+        .layer-action-btn {
+            background: #4a5568;
+            border: none;
+            color: #fff;
+            padding: 10px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+
+        .layer-action-btn:hover {
+            background: #667eea;
+            transform: translateY(-1px);
+        }
+
+        .layer-action-btn.add-btn {
+            background: #10b981;
+        }
+
+        .layer-action-btn.add-btn:hover {
+            background: #059669;
+        }
+
+        .layer-action-btn.delete-btn {
+            background: #ef4444;
+        }
+
+        .layer-action-btn.delete-btn:hover {
+            background: #dc2626;
+        }
+
+        /* Custom scrollbar for layer panel */
+        .layer-list-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .layer-list-container::-webkit-scrollbar-track {
+            background: #1a202c;
+        }
+
+        .layer-list-container::-webkit-scrollbar-thumb {
+            background: #4a5568;
+            border-radius: 4px;
+        }
+
+        .layer-list-container::-webkit-scrollbar-thumb:hover {
+            background: #667eea;
+        }
+
+        /* Custom brush panel */
+        .brush-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            z-index: 2000;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .brush-panel {
+                width: 90%;
+                max-width: 400px;
+                padding: 20px;
+            }
+        }
+
+        .brush-panel.active {
+            display: block;
+            animation: popIn 0.3s;
+        }
+
+        .brush-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .brush-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .brush-option {
+            padding: 20px;
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .brush-option:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: scale(1.05);
+        }
+
+        .brush-option.active {
+            border-color: #fbbf24;
+            background: rgba(251, 191, 36, 0.2);
+        }
+
+        /* Image resize controls */
+        .resize-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .resize-controls {
+                bottom: 20px;
+                width: 90%;
+                max-width: 350px;
+                padding: 15px 20px;
+            }
+        }
+
+        .resize-controls.active {
+            display: flex;
+            animation: slideIn 0.3s;
+        }
+
+        .resize-slider {
+            width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .resize-slider {
+                width: 150px;
+            }
+        }
+
+        .panel-header {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-panel {
+            background: #ef4444;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Add Layer Menu */
+        .add-layer-menu {
+            position: fixed;
+            left: 320px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #2d3748;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            z-index: 2001;
+            width: 280px;
+            overflow: hidden;
+            display: none;
+            opacity: 0;
+            transition: all 0.2s;
+            border: 1px solid #4a5568;
+        }
+
+        @media (max-width: 768px) {
+            .add-layer-menu {
+                left: 50%;
+                top: 60%;
+                transform: translate(-50%, -50%);
+                width: 85%;
+                max-width: 320px;
+            }
+        }
+
+        .add-layer-menu.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .add-layer-header {
+            padding: 12px 16px;
+            background: #1a202c;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #4a5568;
+        }
+
+        .add-layer-option {
+            padding: 12px 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .add-layer-option:hover {
+            background: #3d4a5c;
+        }
+
+        .option-icon {
+            font-size: 24px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .option-details {
+            flex: 1;
+        }
+
+        .option-name {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 2px;
+            color: #fff;
+        }
+
+        .option-desc {
+            font-size: 11px;
+            color: #a0aec0;
+        }
+
+        .add-layer-divider {
+            height: 1px;
+            background: #4a5568;
+            margin: 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative stars -->
+    <script>
+        for(let i = 0; i < 30; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            document.body.appendChild(star);
+        }
+
+        // Add floating stickers
+        const stickers = ['🌟', '💖', '🌈', '✨', '🎨', '📝', '💫', '🎀'];
+        for(let i = 0; i < 10; i++) {
+            const sticker = document.createElement('div');
+            sticker.className = 'sticker';
+            sticker.textContent = stickers[Math.floor(Math.random() * stickers.length)];
+            sticker.style.left = Math.random() * 90 + '%';
+            sticker.style.top = Math.random() * 90 + '%';
+            sticker.style.animationDelay = Math.random() * 6 + 's';
+            document.body.appendChild(sticker);
+        }
+    </script>
+
+    <div class="header">
+        <div class="title">
+            <div class="logo-container">
+                <img src="https://scontent.fsgn5-6.fna.fbcdn.net/v/t39.30808-6/490090355_122120551700714079_39390104263272767_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeFiOEwoo4c7qruQxsznOPT6lpc-ssIT2SWWlz6ywhPZJbYUVnrUxAGby8q1fxQhQBwywcmTKa70drhTxT2vIccs&_nc_ohc=eu5GeaBtIaEQ7kNvwGPAyHG&_nc_oc=AdlKTaScaBdCDEkPDjzzLYiG3KWqc_wm8rh_6xYax3bSGVnXct5NYEQnQWrJPz09b-QVeNKWAqAcqkACXH4-1fsI&_nc_zt=23&_nc_ht=scontent.fsgn5-6.fna&_nc_gid=sUTsGr9XDutQdOKQWWE7Jw&oh=00_Afk49RpDum3wLvixCaM0Ipt1np4CEdJVB62ji8vdidEp7g&oe=69473CF1" alt="Logo">
+            </div>
+            <span>✨ Tiêu đề:</span>
+            <input type="text" id="notebookTitle" placeholder="Nhập tiêu đề notebook...">
+            <span class="highlight">tùng thiện notebook</span>
+        </div>
+        <div class="header-buttons">
+            <button onclick="saveAll()">
+                💾
+                <span class="tooltip">Lưu (Ctrl+S)</span>
+            </button>
+            <button onclick="exportNotebook()">
+                📥
+                <span class="tooltip">Xuất file</span>
+            </button>
+            <button>
+                ⋮
+                <span class="tooltip">Thêm</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="pages-sidebar" id="pagesSidebar">
+            <!-- Pages will be added here -->
+        </div>
+
+        <div class="editor-area">
+            <div class="toolbar">
+                <button class="tool-btn" id="drawModeBtn" onclick="toggleDrawMode()">
+                    🎨 Chế độ vẽ
+                </button>
+                
+                <button class="tool-btn undo-btn" id="undoBtn" onclick="performUndo()" disabled>
+                    ↶ Hoàn tác (Ctrl+Z)
+                </button>
+                
+                <button class="tool-btn" onclick="document.getElementById('imageUpload').click()">
+                    📷 Upload ảnh
+                </button>
+                <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)">
+                
+                <div class="draw-tools-group" id="drawTools" style="display: none;">
+                    <label>🎨 Màu:</label>
+                    <input type="color" id="drawColor" class="color-picker" value="#000000">
+                    <label>✏️ Độ dày:</label>
+                    <input type="range" id="brushSize" min="1" max="20" value="3">
+                    <button class="tool-btn" onclick="clearCanvas()">🗑️ Xóa vẽ</button>
+                    <button class="tool-btn" onclick="toggleCustomBrush()">🖌️ Brush tùy chỉnh</button>
+                </div>
+                
+                <button class="tool-btn" onclick="toggleStickers()">
+                    ✨ Hộp sticker
+                </button>
+                
+                <button class="tool-btn" onclick="toggleLayers()">
+                    📑 Lớp layer
+                </button>
+                
+                <button class="tool-btn" onclick="editImageSize()">
+                    📐 Chỉnh size ảnh
+                </button>
+            </div>
+
+            <div class="editor-content">
+                <div class="notebook-paper">
+                    <div class="combined-editor">
+                        <textarea id="editor" placeholder="Bắt đầu viết những câu chuyện của bạn ở đây... ✨"></textarea>
+                        <canvas id="drawCanvas"></canvas>
+                        <div class="images-container" id="imagesContainer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-text">
+                Tip: ↶ Dùng Ctrl+Z để hoàn tác<br>
+            </div>
+        </div>
+    </div>
+
+    <div class="undo-indicator" id="undoIndicator"></div>
+
+    <!-- Sticker Panel -->
+    <div class="sticker-panel" id="stickerPanel">
+        <div class="panel-header">
+            ✨ Hộp sticker
+            <button class="close-panel" onclick="toggleStickers()">×</button>
+        </div>
+        <div class="sticker-grid" id="stickerGrid"></div>
+    </div>
+
+    <!-- Layer Panel -->
+    <div class="layer-panel" id="layerPanel">
+        <div class="layer-panel-header">
+            <h3>📑 Layers</h3>
+            <button class="close-panel" onclick="toggleLayers()">×</button>
+        </div>
+        <div class="layer-list-container" id="layerList"></div>
+        <div class="layer-opacity-control" id="layerOpacityControl" style="display: none;">
+            <div class="layer-opacity-label">
+                <span>Opacity</span>
+                <span class="layer-opacity-value" id="layerOpacityValue">100%</span>
+            </div>
+            <input type="range" class="layer-opacity-slider" id="layerOpacitySlider" min="0" max="100" value="100">
+        </div>
+        <div class="layer-actions">
+            <button class="layer-action-btn add-btn" onclick="showAddLayerMenu()">
+                ➕ Add Layer
+            </button>
+            <button class="layer-action-btn delete-btn" onclick="deleteSelectedLayer()">
+                🗑️ Delete
+            </button>
+            <button class="layer-action-btn" onclick="duplicateLayer()">
+                📋 Duplicate
+            </button>
+            <button class="layer-action-btn" onclick="mergeDown()">
+                ⬇️ Merge
+            </button>
+        </div>
+    </div>
+
+    <!-- Add Layer Menu -->
+    <div class="add-layer-menu" id="addLayerMenu">
+        <div class="add-layer-header">New Layer</div>
+        <div class="add-layer-option" onclick="addNewTextLayer()">
+            <span class="option-icon">🅰️</span>
+            <div class="option-details">
+                <div class="option-name">Text</div>
+                <div class="option-desc">Create editable text</div>
+            </div>
+        </div>
+        <div class="add-layer-option" onclick="addNewShapeLayer()">
+            <span class="option-icon">⬜</span>
+            <div class="option-details">
+                <div class="option-name">Shape</div>
+                <div class="option-desc">Add rectangle shape</div>
+            </div>
+        </div>
+        <div class="add-layer-option" onclick="addNewImageLayer()">
+            <span class="option-icon">🖼️</span>
+            <div class="option-details">
+                <div class="option-name">Image</div>
+                <div class="option-desc">Upload from device</div>
+            </div>
+        </div>
+        <div class="add-layer-option" onclick="addNewStickerLayer()">
+            <span class="option-icon">✨</span>
+            <div class="option-details">
+                <div class="option-name">Sticker</div>
+                <div class="option-desc">Add emoji sticker</div>
+            </div>
+        </div>
+        <div class="add-layer-divider"></div>
+        <div class="add-layer-option" onclick="addEmptyLayer()">
+            <span class="option-icon">📄</span>
+            <div class="option-details">
+                <div class="option-name">Empty Layer</div>
+                <div class="option-desc">Blank layer for drawing</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Brush Panel -->
+    <div class="brush-panel" id="brushPanel">
+        <div class="panel-header">
+            🖌️ Brush tùy chỉnh
+            <button class="close-panel" onclick="toggleCustomBrush()">×</button>
+        </div>
+        <div class="brush-options" id="brushOptions"></div>
+    </div>
+
+    <!-- Resize Controls -->
+    <div class="resize-controls" id="resizeControls">
+        <span style="color: #333; font-weight: bold;">📐 Resize ảnh:</span>
+        <input type="range" class="resize-slider" id="resizeSlider" min="50" max="500" value="150">
+        <span id="resizeValue" style="color: #333; font-weight: bold;">150px</span>
+        <button class="tool-btn" onclick="applyResize()">✓ Áp dụng</button>
+        <button class="tool-btn" onclick="editImageSize()">✕ Đóng</button>
+    </div>
+
+    <script>
+        let pages = [];
+        let currentPageIndex = 0;
+        let notebookTitle = '';
+        let isDrawingMode = false;
+        let isDrawing = false;
+        let canvas, ctx;
+        let imageCounter = 0;
+        let undoHistory = [];
+        const MAX_UNDO_HISTORY = 50;
+        let customBrushType = 'normal';
+        let selectedImage = null;
+
+        const availableStickers = [
+            '😊', '❤️', '⭐', '🌟', '✨', '💫', '🎉', '🎊',
+            '🎈', '🎁', '🌈', '🌸', '🌺', '🌻', '🌹', '🌷',
+            '🦋', '🐝', '🐞', '🦄', '🎨', '🎭', '🎪', '🎬',
+            '📚', '📝', '✏️', '🖊️', '🖍️', '✂️', '📌', '📎',
+            '💡', '🔥', '💧', '⚡', '☀️', '🌙', '⭐', '🌠'
+        ];
+
+        const brushTypes = [
+            { name: 'Normal', type: 'normal', icon: '✏️' },
+            { name: 'Sparkle', type: 'sparkle', icon: '✨' },
+            { name: 'Rainbow', type: 'rainbow', icon: '🌈' },
+            { name: 'Neon', type: 'neon', icon: '💡' },
+            { name: 'Spray', type: 'spray', icon: '💨' },
+            { name: 'Calligraphy', type: 'calligraphy', icon: '🖋️' },
+            { name: 'Soft Brush', type: 'soft', icon: '🎨' }
+        ];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initCanvas();
+            loadData();
+            setupEventListeners();
+            updateUndoButton();
+            initStickers();
+            initBrushes();
+        });
+
+        function initStickers() {
+            const grid = document.getElementById('stickerGrid');
+            availableStickers.forEach(sticker => {
+                const item = document.createElement('div');
+                item.className = 'sticker-item';
+                item.textContent = sticker;
+                item.onclick = () => placeSticker(sticker);
+                grid.appendChild(item);
+            });
+        }
+
+        function initBrushes() {
+            const options = document.getElementById('brushOptions');
+            brushTypes.forEach(brush => {
+                const option = document.createElement('div');
+                option.className = 'brush-option';
+                if (brush.type === customBrushType) option.classList.add('active');
+                option.innerHTML = `<div style="font-size: 30px;">${brush.icon}</div><div style="margin-top: 8px; color: #333;">${brush.name}</div>`;
+                option.onclick = () => selectBrush(brush.type, option);
+                options.appendChild(option);
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            const editor = document.getElementById('editor');
+            let typingTimer;
+            const typingDelay = 500;
+
+            editor.addEventListener('input', function() {
+                clearTimeout(typingTimer);
+                typingTimer = setTimeout(() => {
+                    saveState();
+                }, typingDelay);
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'z') {
+                    e.preventDefault();
+                    performUndo();
+                }
+                
+                if (e.ctrlKey && e.key === 's') {
+                    e.preventDefault();
+                    saveAll();
+                }
+            });
+
+            document.getElementById('notebookTitle').addEventListener('input', function() {
+                notebookTitle = this.value;
+                saveData();
+            });
+
+            document.getElementById('resizeSlider').addEventListener('input', function() {
+                document.getElementById('resizeValue').textContent = this.value + 'px';
+            });
+        }
+
+        // Save complete state for undo
+        function saveState() {
+            const state = {
+                text: document.getElementById('editor').value,
+                drawing: canvas ? canvas.toDataURL() : null,
+                images: getCurrentImages()
+            };
+            
+            const stateStr = JSON.stringify(state);
+            
+            if (undoHistory.length === 0 || 
+                JSON.stringify(undoHistory[undoHistory.length - 1]) !== stateStr) {
+                undoHistory.push(state);
+                
+                if (undoHistory.length > MAX_UNDO_HISTORY) {
+                    undoHistory.shift();
+                }
+                
+                updateUndoButton();
+            }
+        }
+
+        // Get current images state
+        function getCurrentImages() {
+            const imagesContainer = document.getElementById('imagesContainer');
+            const images = [];
+            imagesContainer.querySelectorAll('.uploaded-image, .dynamic-text, .placed-sticker').forEach(el => {
+                const baseData = {
+                    left: el.style.left,
+                    top: el.style.top,
+                    opacity: el.style.opacity || '1',
+                    display: el.style.display || ''
+                };
+
+                if (el.classList.contains('uploaded-image')) {
+                    images.push({
+                        type: 'image',
+                        src: el.src,
+                        width: el.style.width,
+                        ...baseData
+                    });
+                } else if (el.classList.contains('dynamic-text')) {
+                    images.push({
+                        type: 'text',
+                        content: el.textContent,
+                        ...baseData
+                    });
+                } else if (el.classList.contains('placed-sticker')) {
+                    images.push({
+                        type: 'sticker',
+                        content: el.textContent,
+                        ...baseData
+                    });
+                }
+            });
+            return images;
+        }
+
+        // Perform undo
+        function performUndo() {
+            if (undoHistory.length > 1) {
+                undoHistory.pop();
+                const previousState = undoHistory[undoHistory.length - 1];
+                
+                document.getElementById('editor').value = previousState.text;
+                
+                if (previousState.drawing && canvas && ctx) {
+                    const img = new Image();
+                    img.onload = function() {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx.drawImage(img, 0, 0);
+                    };
+                    img.src = previousState.drawing;
+                } else if (canvas && ctx) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+                
+                restoreImages(previousState.images);
+                
+                saveCurrentPage();
+                showUndoIndicator('✓ Đã hoàn tác');
+                updateUndoButton();
+            }
+        }
+
+        // Restore images
+        function restoreImages(images) {
+            const imagesContainer = document.getElementById('imagesContainer');
+            imagesContainer.innerHTML = '';
+            
+            if (images) {
+                images.forEach(imgData => {
+                    if (imgData.type === 'image') {
+                        createImageElement(imgData);
+                    } else if (imgData.type === 'text') {
+                        recreateTextElement(imgData);
+                    } else if (imgData.type === 'sticker') {
+                        recreateStickerElement(imgData);
+                    }
+                });
+            }
+        }
+
+        function recreateTextElement(data) {
+            const textEl = document.createElement('div');
+            textEl.className = 'dynamic-text';
+            textEl.textContent = data.content;
+            textEl.style.left = data.left;
+            textEl.style.top = data.top;
+            textEl.style.opacity = data.opacity || '1';
+            textEl.style.display = data.display || '';
+
+            const deleteBtn = document.createElement('div');
+            deleteBtn.className = 'text-delete';
+            deleteBtn.textContent = '×';
+            deleteBtn.onclick = function() {
+                saveState();
+                textEl.remove();
+                saveCurrentPage();
+                showNotification('Đã xóa text');
+            };
+
+            textEl.appendChild(deleteBtn);
+            makeDraggable(textEl);
+            document.getElementById('imagesContainer').appendChild(textEl);
+        }
+
+        function recreateStickerElement(data) {
+            const stickerEl = document.createElement('div');
+            stickerEl.className = 'placed-sticker';
+            stickerEl.textContent = data.content;
+            stickerEl.style.left = data.left;
+            stickerEl.style.top = data.top;
+            stickerEl.style.opacity = data.opacity || '1';
+            stickerEl.style.display = data.display || '';
+
+            makeDraggable(stickerEl);
+            stickerEl.ondblclick = function() {
+                saveState();
+                stickerEl.remove();
+                saveCurrentPage();
+            };
+
+            document.getElementById('imagesContainer').appendChild(stickerEl);
+        }
+
+        // Update undo button state
+        function updateUndoButton() {
+            const undoBtn = document.getElementById('undoBtn');
+            undoBtn.disabled = undoHistory.length <= 1;
+        }
+
+        // Show undo indicator
+        function showUndoIndicator(message) {
+            const indicator = document.getElementById('undoIndicator');
+            indicator.textContent = message;
+            indicator.classList.add('show');
+            
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `<span>✓</span><span>${message}</span>`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 2500);
+        }
+
+        // Initialize canvas
+        function initCanvas() {
+            canvas = document.getElementById('drawCanvas');
+            if (!canvas) return;
+            
+            ctx = canvas.getContext('2d');
+            const editor = document.getElementById('editor');
+            
+            canvas.width = editor.offsetWidth;
+            canvas.height = editor.offsetHeight;
+            
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+        }
+
+        // Toggle drawing mode
+        function toggleDrawMode() {
+            isDrawingMode = !isDrawingMode;
+            const btn = document.getElementById('drawModeBtn');
+            const drawTools = document.getElementById('drawTools');
+            const editor = document.getElementById('editor');
+            
+            if (isDrawingMode) {
+                btn.classList.add('active');
+                btn.innerHTML = '✍️ Chế độ viết';
+                drawTools.style.display = 'flex';
+                canvas.classList.add('drawing-mode');
+                editor.style.pointerEvents = 'none';
+                showNotification('Chế độ vẽ đã bật');
+            } else {
+                btn.classList.remove('active');
+                btn.innerHTML = '🎨 Chế độ vẽ';
+                drawTools.style.display = 'none';
+                canvas.classList.remove('drawing-mode');
+                editor.style.pointerEvents = 'auto';
+                showNotification('Chế độ viết đã bật');
+            }
+        }
+
+        function startDrawing(e) {
+            if (!isDrawingMode) return;
+            
+            if (!isDrawing) {
+                saveState();
+            }
+            
+            isDrawing = true;
+            const rect = canvas.getBoundingClientRect();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        }
+
+        function draw(e) {
+            if (!isDrawing || !isDrawingMode) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            ctx.strokeStyle = document.getElementById('drawColor').value;
+            ctx.lineWidth = document.getElementById('brushSize').value;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            switch(customBrushType) {
+                case 'sparkle':
+                    drawSparkle(x, y);
+                    break;
+                case 'rainbow':
+                    drawRainbow(x, y);
+                    break;
+                case 'neon':
+                    drawNeon(x, y);
+                    break;
+                case 'spray':
+                    drawSpray(x, y);
+                    break;
+                case 'calligraphy':
+                    drawCalligraphy(x, y);
+                    break;
+                case 'soft':
+                    drawSoftBrush(x, y);
+                    break;
+                default:
+                    ctx.lineTo(x, y);
+                    ctx.stroke();
+            }
+        }
+
+        function drawSoftBrush(x, y) {
+            const brushSize = document.getElementById('brushSize').value;
+            const color = document.getElementById('drawColor').value;
+            
+            // Create soft, feathered brush strokes
+            const gradient = ctx.createRadialGradient(x, y, 0, x, y, brushSize * 1.5);
+            
+            // Convert hex to rgba for transparency
+            const r = parseInt(color.slice(1, 3), 16);
+            const g = parseInt(color.slice(3, 5), 16);
+            const b = parseInt(color.slice(5, 7), 16);
+            
+            gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.3)`);
+            gradient.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, 0.1)`);
+            gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+            
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(x, y, brushSize * 1.5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Add main stroke for definition
+            ctx.lineTo(x, y);
+            ctx.lineWidth = brushSize * 0.5;
+            ctx.globalAlpha = 0.4;
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+        }
+
+        function drawSparkle(x, y) {
+            for (let i = 0; i < 3; i++) {
+                const offsetX = (Math.random() - 0.5) * 10;
+                const offsetY = (Math.random() - 0.5) * 10;
+                ctx.fillStyle = document.getElementById('drawColor').value;
+                ctx.globalAlpha = Math.random() * 0.5 + 0.5;
+                ctx.fillRect(x + offsetX, y + offsetY, 2, 2);
+            }
+            ctx.globalAlpha = 1;
+            ctx.lineTo(x, y);
+            ctx.stroke();
+        }
+
+        function drawRainbow(x, y) {
+            const colors = ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#9400d3'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            ctx.strokeStyle = color;
+            ctx.lineTo(x, y);
+            ctx.stroke();
+        }
+
+        function drawNeon(x, y) {
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = document.getElementById('drawColor').value;
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+        }
+
+        function drawSpray(x, y) {
+            const density = 20;
+            const radius = ctx.lineWidth * 2;
+            for (let i = 0; i < density; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const r = Math.random() * radius;
+                const sprayX = x + Math.cos(angle) * r;
+                const sprayY = y + Math.sin(angle) * r;
+                ctx.fillStyle = document.getElementById('drawColor').value;
+                ctx.globalAlpha = Math.random() * 0.3 + 0.1;
+                ctx.fillRect(sprayX, sprayY, 1, 1);
+            }
+            ctx.globalAlpha = 1;
+        }
+
+        function drawCalligraphy(x, y) {
+            const oldWidth = ctx.lineWidth;
+            ctx.lineWidth = oldWidth * 2;
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.lineWidth = oldWidth;
+        }
+
+        function stopDrawing() {
+            if (isDrawing) {
+                isDrawing = false;
+                saveCurrentPage();
+            }
+        }
+
+        function clearCanvas() {
+            if (!canvas || !ctx) return;
+            
+            saveState();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            saveCurrentPage();
+            showNotification('Đã xóa bảng vẽ');
+        }
+
+        // Handle image upload
+        function handleImageUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const imgData = {
+                    type: 'image',
+                    src: event.target.result,
+                    left: '100px',
+                    top: '100px',
+                    width: '150px'
+                };
+                
+                createImageElement(imgData);
+                saveState();
+                saveCurrentPage();
+                showNotification('Đã thêm ảnh thành công');
+            };
+            reader.readAsDataURL(file);
+            e.target.value = '';
+        }
+
+        // Create image element
+        function createImageElement(imgData) {
+            const img = document.createElement('img');
+            img.src = imgData.src;
+            img.className = 'uploaded-image';
+            img.style.left = imgData.left;
+            img.style.top = imgData.top;
+            img.style.width = imgData.width;
+            img.style.opacity = imgData.opacity || '1';
+            img.style.display = imgData.display || '';
+            img.id = 'img-' + (++imageCounter);
+            
+            const deleteBtn = document.createElement('div');
+            deleteBtn.className = 'image-delete';
+            deleteBtn.textContent = '×';
+            deleteBtn.onclick = function() {
+                saveState();
+                img.remove();
+                saveCurrentPage();
+                showNotification('Đã xóa ảnh');
+            };
+            
+            img.appendChild(deleteBtn);
+            
+            img.onclick = function(e) {
+                if (e.target.className === 'image-delete') return;
+                selectedImage = img;
+                const currentWidth = parseInt(img.style.width);
+                document.getElementById('resizeSlider').value = currentWidth;
+                document.getElementById('resizeValue').textContent = currentWidth + 'px';
+                showNotification('Đã chọn ảnh. Dùng slider để resize');
+                
+                document.querySelectorAll('.uploaded-image').forEach(i => i.style.border = '4px solid #667eea');
+                img.style.border = '4px solid #fbbf24';
+            };
+            
+            makeDraggable(img);
+            document.getElementById('imagesContainer').appendChild(img);
+        }
+
+        function toggleStickers() {
+            const panel = document.getElementById('stickerPanel');
+            panel.classList.toggle('active');
+        }
+
+        function placeSticker(sticker) {
+            const stickerEl = document.createElement('div');
+            stickerEl.className = 'placed-sticker';
+            stickerEl.textContent = sticker;
+            stickerEl.style.left = Math.random() * 400 + 100 + 'px';
+            stickerEl.style.top = Math.random() * 300 + 100 + 'px';
+
+            makeDraggable(stickerEl);
+            stickerEl.ondblclick = function() {
+                saveState();
+                stickerEl.remove();
+                saveCurrentPage();
+            };
+
+            document.getElementById('imagesContainer').appendChild(stickerEl);
+            saveState();
+            saveCurrentPage();
+            showNotification('Đã thêm sticker');
+        }
+
+        function toggleLayers() {
+            const panel = document.getElementById('layerPanel');
+            panel.classList.toggle('active');
+            if (panel.classList.contains('active')) {
+                updateLayerList();
+            }
+        }
+
+        let selectedLayerIndex = null;
+
+        function updateLayerList() {
+            const list = document.getElementById('layerList');
+            list.innerHTML = '';
+
+            const container = document.getElementById('imagesContainer');
+            const elements = Array.from(container.children);
+
+            if (elements.length === 0) {
+                list.innerHTML = '<div style="color: #a0aec0; text-align: center; padding: 20px; font-size: 13px;">No layers yet</div>';
+                document.getElementById('layerOpacityControl').style.display = 'none';
+                return;
+            }
+
+            // Reverse order to show top layers first (like Photoshop)
+            elements.reverse().forEach((el, index) => {
+                const actualIndex = elements.length - 1 - index;
+                const item = document.createElement('div');
+                item.className = 'layer-item';
+                if (actualIndex === selectedLayerIndex) {
+                    item.classList.add('active');
+                }
+                
+                // Get layer info
+                let name = 'Layer ' + (actualIndex + 1);
+                let icon = '📄';
+                let type = 'Element';
+                let thumbnail = '';
+
+                if (el.classList.contains('uploaded-image')) {
+                    name = 'Image ' + (actualIndex + 1);
+                    icon = '🖼️';
+                    type = 'Image';
+                    thumbnail = `<img src="${el.src}" alt="">`;
+                } else if (el.classList.contains('dynamic-text')) {
+                    name = el.textContent.substring(0, 15) + (el.textContent.length > 15 ? '...' : '');
+                    icon = '💬';
+                    type = 'Text';
+                    thumbnail = icon;
+                } else if (el.classList.contains('placed-sticker')) {
+                    name = 'Sticker ' + (actualIndex + 1);
+                    icon = el.textContent;
+                    type = 'Sticker';
+                    thumbnail = icon;
+                }
+
+                const isVisible = el.style.display !== 'none';
+                const currentOpacity = parseFloat(el.style.opacity || 1) * 100;
+
+                item.innerHTML = `
+                    <div class="layer-item-content">
+                        <div class="layer-thumbnail">${thumbnail || icon}</div>
+                        <div class="layer-info">
+                            <div class="layer-name">${name}</div>
+                            <div class="layer-type">${type} • ${Math.round(currentOpacity)}%</div>
+                        </div>
+                        <div class="layer-visibility ${isVisible ? '' : 'hidden'}" onclick="toggleLayerVisibility(${actualIndex}, event)">
+                            ${isVisible ? '👁️' : '👁️‍🗨️'}
+                        </div>
+                    </div>
+                    <div class="layer-controls">
+                        <button onclick="moveLayerUp(${actualIndex}); event.stopPropagation();" ${actualIndex === elements.length - 1 ? 'disabled' : ''}>↑ Up</button>
+                        <button onclick="moveLayerDown(${actualIndex}); event.stopPropagation();" ${actualIndex === 0 ? 'disabled' : ''}>↓ Down</button>
+                        <button class="delete-layer-btn" onclick="deleteLayer(${actualIndex}); event.stopPropagation();">🗑️</button>
+                    </div>
+                `;
+
+                item.querySelector('.layer-item-content').onclick = (e) => {
+                    if (e.target.classList.contains('layer-visibility') || e.target.closest('.layer-visibility')) {
+                        return;
+                    }
+                    selectLayer(actualIndex);
+                };
+
+                list.appendChild(item);
+            });
+
+            // Show/hide opacity control
+            if (selectedLayerIndex !== null) {
+                showOpacityControl();
+            } else {
+                document.getElementById('layerOpacityControl').style.display = 'none';
+            }
+        }
+
+        function selectLayer(index) {
+            selectedLayerIndex = index;
+            updateLayerList();
+
+            const container = document.getElementById('imagesContainer');
+            const elements = Array.from(container.children);
+            const element = elements[index];
+
+            // Visual feedback
+            document.querySelectorAll('.uploaded-image, .dynamic-text, .placed-sticker').forEach(el => {
+                el.style.outline = '';
+            });
+            
+            element.style.outline = '3px solid #fbbf24';
+            setTimeout(() => {
+                element.style.outline = '3px solid rgba(251, 191, 36, 0.5)';
+            }, 200);
+
+            // Update opacity slider
+            const currentOpacity = parseFloat(element.style.opacity || 1);
+            document.getElementById('layerOpacitySlider').value = currentOpacity * 100;
+            document.getElementById('layerOpacityValue').textContent = Math.round(currentOpacity * 100) + '%';
+        }
+
+        function showOpacityControl() {
+            const control = document.getElementById('layerOpacityControl');
+            control.style.display = 'block';
+
+            const slider = document.getElementById('layerOpacitySlider');
+            slider.oninput = function() {
+                const value = this.value;
+                document.getElementById('layerOpacityValue').textContent = value + '%';
+                
+                if (selectedLayerIndex !== null) {
+                    const container = document.getElementById('imagesContainer');
+                    const elements = Array.from(container.children);
+                    const element = elements[selectedLayerIndex];
+                    element.style.opacity = value / 100;
+                }
+            };
+
+            slider.onchange = function() {
+                saveState();
+                saveCurrentPage();
+                updateLayerList();
+            };
+        }
+
+        function toggleLayerVisibility(index, event) {
+            event.stopPropagation();
+            const container = document.getElementById('imagesContainer');
+            const elements = Array.from(container.children);
+            const element = elements[index];
+            
+            if (element.style.display === 'none') {
+                element.style.display = '';
+            } else {
+                element.style.display = 'none';
+            }
+            
+            saveState();
+            saveCurrentPage();
+            updateLayerList();
+            showNotification('Đã thay đổi hiển thị layer');
+        }
+
+        function moveLayerUp(index) {
+            const container = document.getElementById('imagesContainer');
+            const elements = Array.from(container.children);
+            if (index < elements.length - 1) {
+                const nextElement = elements[index + 1];
+                container.insertBefore(nextElement, elements[index]);
+                
+                if (selectedLayerIndex === index) {
+                    selectedLayerIndex = index + 1;
+                } else if (selectedLayerIndex === index + 1) {
+                    selectedLayerIndex = index;
+                }
+                
+                updateLayerList();
+                saveState();
+                saveCurrentPage();
+                showNotification('Đã di chuyển layer lên');
+            }
+        }
+
+        function moveLayerDown(index) {
+            const container = document.getElementById('imagesContainer');
+            const elements = Array.from(container.children);
+            if (index > 0) {
+                const currentElement = elements[index];
+                const prevElement = elements[index - 1];
+                container.insertBefore(currentElement, prevElement);
+                
+                if (selectedLayerIndex === index) {
+                    selectedLayerIndex = index - 1;
+                } else if (selectedLayerIndex === index - 1) {
+                    selectedLayerIndex = index;
+                }
+                
+                updateLayerList();
+                saveState();
+                saveCurrentPage();
+                showNotification('Đã di chuyển layer xuống');
+            }
+        }
+
+        function deleteLayer(index) {
+            const container = document.getElementById('imagesContainer');
+            const elements = Array.from(container.children);
+            
+            if (confirm('Bạn có chắc muốn xóa layer này?')) {
+                saveState();
+                elements[index].remove();
+                
+                if (selectedLayerIndex === index) {
+                    selectedLayerIndex = null;
+                } else if (selectedLayerIndex > index) {
+                    selectedLayerIndex--;
+                }
+                
+                updateLayerList();
+                saveCurrentPage();
+                showNotification('Đã xóa layer');
+            }
+        }
+
+        function showAddLayerMenu() {
+            const menu = document.getElementById('addLayerMenu');
+            menu.classList.toggle('active');
+            
+            // Close menu when clicking outside
+            if (menu.classList.contains('active')) {
+                setTimeout(() => {
+                    document.addEventListener('click', closeAddLayerMenu);
+                }, 100);
+            }
+        }
+
+        function closeAddLayerMenu(e) {
+            const menu = document.getElementById('addLayerMenu');
+            const btn = event.target.closest('.add-btn');
+            
+            if (!menu.contains(e.target) && !btn) {
+                menu.classList.remove('active');
+                document.removeEventListener('click', closeAddLayerMenu);
+            }
+        }
+
+        function addNewTextLayer() {
+            const textEl = document.createElement('div');
+            textEl.className = 'dynamic-text';
+            textEl.textContent = 'New Text Layer';
+            textEl.style.left = '200px';
+            textEl.style.top = '150px';
+            textEl.style.opacity = '1';
+
+            const deleteBtn = document.createElement('div');
+            deleteBtn.className = 'text-delete';
+            deleteBtn.textContent = '×';
+            deleteBtn.onclick = function() {
+                saveState();
+                textEl.remove();
+                saveCurrentPage();
+                updateLayerList();
+                showNotification('Đã xóa text');
+            };
+
+            textEl.appendChild(deleteBtn);
+            makeDraggable(textEl);
+            document.getElementById('imagesContainer').appendChild(textEl);
+
+            closeAddLayerMenu();
+            saveState();
+            saveCurrentPage();
+            updateLayerList();
+            showNotification('Đã thêm Text Layer mới');
+        }
+
+        function addNewStickerLayer() {
+            const randomSticker = availableStickers[Math.floor(Math.random() * availableStickers.length)];
+            placeSticker(randomSticker);
+            closeAddLayerMenu();
+            updateLayerList();
+        }
+
+        function addNewImageLayer() {
+            document.getElementById('imageUpload').click();
+            closeAddLayerMenu();
+        }
+
+        function addNewShapeLayer() {
+            // Create a simple colored rectangle as a shape
+            const shapeEl = document.createElement('div');
+            shapeEl.className = 'dynamic-text'; // Reuse styling
+            shapeEl.style.left = '200px';
+            shapeEl.style.top = '150px';
+            shapeEl.style.width = '100px';
+            shapeEl.style.height = '100px';
+            shapeEl.style.opacity = '1';
+            shapeEl.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+            shapeEl.style.borderRadius = '10px';
+            shapeEl.textContent = '';
+
+            const deleteBtn = document.createElement('div');
+            deleteBtn.className = 'text-delete';
+            deleteBtn.textContent = '×';
+            deleteBtn.onclick = function() {
+                saveState();
+                shapeEl.remove();
+                saveCurrentPage();
+                updateLayerList();
+                showNotification('Đã xóa shape');
+            };
+
+            shapeEl.appendChild(deleteBtn);
+            makeDraggable(shapeEl);
+            document.getElementById('imagesContainer').appendChild(shapeEl);
+
+            closeAddLayerMenu();
+            saveState();
+            saveCurrentPage();
+            updateLayerList();
+            showNotification('Đã thêm Shape Layer mới');
+        }
+
+        function addEmptyLayer() {
+            // Create an invisible placeholder for empty layer
+            const emptyEl = document.createElement('div');
+            emptyEl.className = 'dynamic-text';
+            emptyEl.style.left = '200px';
+            emptyEl.style.top = '150px';
+            emptyEl.style.width = '200px';
+            emptyEl.style.height = '200px';
+            emptyEl.style.opacity = '1';
+            emptyEl.style.background = 'transparent';
+            emptyEl.style.border = '2px dashed rgba(255, 255, 255, 0.3)';
+            emptyEl.textContent = '';
+
+            const deleteBtn = document.createElement('div');
+            deleteBtn.className = 'text-delete';
+            deleteBtn.textContent = '×';
+            deleteBtn.onclick = function() {
+                saveState();
+                emptyEl.remove();
+                saveCurrentPage();
+                updateLayerList();
+                showNotification('Đã xóa layer');
+            };
+
+            emptyEl.appendChild(deleteBtn);
+            makeDraggable(emptyEl);
+            document.getElementById('imagesContainer').appendChild(emptyEl);
+
+            closeAddLayerMenu();
+            saveState();
+            saveCurrentPage();
+            updateLayerList();
+            showNotification('Đã thêm Empty Layer - Dùng để vẽ!');
+        }
+
+        function deleteSelectedLayer() {
+            if (selectedLayerIndex === null) {
+                showNotification('Vui lòng chọn layer trước');
+                return;
+            }
+
+            const container = document.getElementById('imagesContainer');
+            const elements = Array.from(container.children);
+            
+            if (elements.length === 0) {
+                showNotification('Không có layer để xóa');
+                return;
+            }
+
+            if (confirm('Bạn có chắc muốn xóa layer đã chọn?')) {
+                saveState();
+                elements[selectedLayerIndex].remove();
+                selectedLayerIndex = null;
+                updateLayerList();
+                saveCurrentPage();
+                showNotification('Đã xóa layer');
+            }
+        }
+
+        function duplicateLayer() {
+            if (selectedLayerIndex === null) {
+                showNotification('Vui lòng chọn layer trước');
+                return;
+            }
+
+            const container = document.getElementById('imagesContainer');
+            const elements = Array.from(container.children);
+            const element = elements[selectedLayerIndex];
+            
+            saveState();
+            
+            const clone = element.cloneNode(true);
+            
+            // Offset the position slightly
+            const currentLeft = parseInt(clone.style.left) || 0;
+            const currentTop = parseInt(clone.style.top) || 0;
+            clone.style.left = (currentLeft + 20) + 'px';
+            clone.style.top = (currentTop + 20) + 'px';
+            
+            // Re-attach event listeners
+            if (clone.classList.contains('uploaded-image')) {
+                const imgData = {
+                    type: 'image',
+                    src: clone.src,
+                    left: clone.style.left,
+                    top: clone.style.top,
+                    width: clone.style.width
+                };
+                createImageElement(imgData);
+            } else if (clone.classList.contains('dynamic-text')) {
+                const textData = {
+                    content: clone.textContent,
+                    left: clone.style.left,
+                    top: clone.style.top
+                };
+                recreateTextElement(textData);
+            } else if (clone.classList.contains('placed-sticker')) {
+                const stickerData = {
+                    content: clone.textContent,
+                    left: clone.style.left,
+                    top: clone.style.top
+                };
+                recreateStickerElement(stickerData);
+            }
+            
+            saveCurrentPage();
+            updateLayerList();
+            showNotification('Đã nhân đôi layer');
+        }
+
+        function mergeDown() {
+            if (selectedLayerIndex === null || selectedLayerIndex === 0) {
+                showNotification('Không thể merge layer này');
+                return;
+            }
+
+            const container = document.getElementById('imagesContainer');
+            const elements = Array.from(container.children);
+            
+            if (elements.length < 2) {
+                showNotification('Cần ít nhất 2 layer để merge');
+                return;
+            }
+
+            // For now, just show a message (actual merging would require canvas operations)
+            showNotification('Tính năng merge đang phát triển');
+        }
+
+        function toggleCustomBrush() {
+            const panel = document.getElementById('brushPanel');
+            panel.classList.toggle('active');
+        }
+
+        function selectBrush(type, element) {
+            customBrushType = type;
+            document.querySelectorAll('.brush-option').forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+            showNotification('Đã chọn brush: ' + type);
+        }
+
+        function editImageSize() {
+            const controls = document.getElementById('resizeControls');
+            controls.classList.toggle('active');
+            
+            if (controls.classList.contains('active')) {
+                showNotification('Click vào ảnh để chọn, sau đó kéo slider để resize');
+            }
+        }
+
+        function applyResize() {
+            if (!selectedImage) {
+                showNotification('Vui lòng chọn ảnh trước');
+                return;
+            }
+            
+            saveState();
+            const newSize = document.getElementById('resizeSlider').value + 'px';
+            selectedImage.style.width = newSize;
+            saveCurrentPage();
+            showNotification('Đã resize ảnh thành công');
+            updateLayerList();
+        }
+
+        // Make element draggable
+        function makeDraggable(element) {
+            let isDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+
+            element.addEventListener('mousedown', dragStart);
+
+            function dragStart(e) {
+                if (e.target.classList.contains('image-delete') || 
+                    e.target.classList.contains('text-delete')) {
+                    return;
+                }
+
+                isDragging = true;
+                initialX = e.clientX - parseInt(element.style.left || 0);
+                initialY = e.clientY - parseInt(element.style.top || 0);
+
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('mouseup', dragEnd);
+            }
+
+            function drag(e) {
+                if (!isDragging) return;
+
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+
+                element.style.left = currentX + 'px';
+                element.style.top = currentY + 'px';
+            }
+
+            function dragEnd() {
+                if (isDragging) {
+                    saveState();
+                    saveCurrentPage();
+                    isDragging = false;
+                }
+
+                document.removeEventListener('mousemove', drag);
+                document.removeEventListener('mouseup', dragEnd);
+            }
+        }
+
+        // Page management
+        function addPage() {
+            const newPage = {
+                id: Date.now(),
+                text: '',
+                drawing: null,
+                images: []
+            };
+            
+            pages.push(newPage);
+            currentPageIndex = pages.length - 1;
+            
+            renderPages();
+            loadPage(currentPageIndex);
+            saveData();
+            showNotification('Đã tạo trang mới');
+        }
+
+        function switchPage(index) {
+            if (index === currentPageIndex) return;
+            
+            saveCurrentPage();
+            currentPageIndex = index;
+            loadPage(index);
+            
+            document.querySelectorAll('.page-tab').forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+        }
+
+        function deletePage(index, event) {
+            event.stopPropagation();
+            
+            if (pages.length === 1) {
+                showNotification('Không thể xóa trang cuối cùng');
+                return;
+            }
+            
+            if (confirm('Bạn có chắc muốn xóa trang này?')) {
+                pages.splice(index, 1);
+                
+                if (currentPageIndex >= pages.length) {
+                    currentPageIndex = pages.length - 1;
+                }
+                
+                renderPages();
+                loadPage(currentPageIndex);
+                saveData();
+                showNotification('Đã xóa trang');
+            }
+        }
+
+        function renderPages() {
+            const sidebar = document.getElementById('pagesSidebar');
+            sidebar.innerHTML = '';
+            
+            pages.forEach((page, index) => {
+                const tab = document.createElement('div');
+                tab.className = 'page-tab';
+                if (index === currentPageIndex) tab.classList.add('active');
+                tab.textContent = index + 1;
+                tab.onclick = () => switchPage(index);
+                
+                const deleteBtn = document.createElement('div');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.textContent = '×';
+                deleteBtn.onclick = (e) => deletePage(index, e);
+                
+                tab.appendChild(deleteBtn);
+                sidebar.appendChild(tab);
+            });
+            
+            const addBtn = document.createElement('div');
+            addBtn.className = 'add-page';
+            addBtn.textContent = '+';
+            addBtn.onclick = addPage;
+            sidebar.appendChild(addBtn);
+        }
+
+        function saveCurrentPage() {
+            if (pages.length === 0) return;
+            
+            pages[currentPageIndex].text = document.getElementById('editor').value;
+            pages[currentPageIndex].drawing = canvas ? canvas.toDataURL() : null;
+            pages[currentPageIndex].images = getCurrentImages();
+            
+            saveData();
+        }
+
+        function loadPage(index) {
+            if (index < 0 || index >= pages.length) return;
+            
+            undoHistory = [];
+            
+            const page = pages[index];
+            
+            document.getElementById('editor').value = page.text || '';
+            
+            if (page.drawing && canvas && ctx) {
+                const img = new Image();
+                img.onload = function() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0);
+                };
+                img.src = page.drawing;
+            } else if (canvas && ctx) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+            
+            restoreImages(page.images || []);
+            
+            saveState();
+            
+            selectedImage = null;
+            selectedLayerIndex = null;
+            updateLayerList();
+        }
+
+        // Save and load data
+        function saveData() {
+            const data = {
+                title: notebookTitle,
+                pages: pages,
+                currentPage: currentPageIndex
+            };
+            
+            localStorage.setItem('notebookData', JSON.stringify(data));
+        }
+
+        function loadData() {
+            const saved = localStorage.getItem('notebookData');
+            
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    notebookTitle = data.title || '';
+                    pages = data.pages || [];
+                    currentPageIndex = data.currentPage || 0;
+                    
+                    document.getElementById('notebookTitle').value = notebookTitle;
+                } catch (e) {
+                    console.error('Error loading data:', e);
+                    initializeDefaultPage();
+                }
+            } else {
+                initializeDefaultPage();
+            }
+            
+            if (pages.length === 0) {
+                initializeDefaultPage();
+            }
+            
+            renderPages();
+            loadPage(currentPageIndex);
+        }
+
+        function initializeDefaultPage() {
+            pages = [{
+                id: Date.now(),
+                text: '',
+                drawing: null,
+                images: []
+            }];
+            currentPageIndex = 0;
+        }
+
+        function saveAll() {
+            saveCurrentPage();
+            saveData();
+            showNotification('✓ Đã lưu thành công!');
+        }
+
+        function exportNotebook() {
+            saveCurrentPage();
+            
+            const data = {
+                title: notebookTitle || 'My Notebook',
+                pages: pages,
+                exportDate: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = (notebookTitle || 'notebook') + '.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showNotification('✓ Đã xuất file thành công!');
+        }
+
+        // Auto-save every 30 seconds
+        setInterval(() => {
+            saveCurrentPage();
+        }, 30000);
+
+        // Save before closing
+        window.addEventListener('beforeunload', function() {
+            saveCurrentPage();
+        });
+    </script>
+</body>
+</html>
